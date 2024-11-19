@@ -1,0 +1,48 @@
+#artic
+
+# PROYECTOS FIS SEGÚN PIIOM (CLASIFICACIÓN SEMÁNTICA AUTOMÁTICA)
+
+## Clasificación automatizada de información de proyectos FIS 
+
+Este código utiliza una combinación de algoritmos clásicos de aprendizaje automático, como máquina de soporte vectorial (SVM), y técnicas basadas en transformadores semánticos (SentenceTransformers y OpenAI Embeddings como LLMs), para analizar y clasificar la información de proyectos de investigación. En este caso, el enfoque se centra en los proyectos financiados con recursos del Fondo de Investigación en Salud (FIS) gestionado por Colciencias, hoy MinCiencias aprobados mediante convocatorias entre 2011 y 2019. La clasificación se efectuó a partir de las categorías definidas por el documento de políticas públicas orientada por misiones, propuesto por el equipo del Ministerio de Ciencia, Tecnología e Innovación para fines de la evaluación de impacto.
+En términos técnicos, los modelos empleados generan representaciones numéricas (*embeddings*) de textos incluidos en un corpus preparado para el análisis, como títulos, palabras clave y descripciones, procurando capturar su significado semántico, en este caso, su orientación en términos la orientación de las misiones y su potencial relación con temáticas afines a las ciencias médicas y de la salud. Estas representaciones permiten comparar un grupo de proyectos seleccionados con las categorías definidas y asignarles una clasificación temática alineada con las prioridades estratégicas del Ministerio. Este ejercicio es indicativo y se presenta únicamente como un insumo que aporta al proceso de análisis y evaluación y, no como una clasificación definitiva, por lo que debe validarse. Por ejemplo los proyectos relacionados con Guías de práctica clínica se inscriben en PIIOM 1: PIIOM 1: Fortalecimiento del Marco Regulatorio para la Soberanía Sanitaria, luego de verificar la clasificación asignada por el modelo.
+
+## Objetivo del código
+
+El propósito principal del código es realizar una **clasificación automatizada y aproximada a los PIIOM al conjunto de proyectos de investigación en salud financiados por el FIS en la ventana de evaluación, identificando cómo se alinean con las categorías temáticas de las políticas públicas por misiones delineadas por MinCiencias. En este sentido, el flujo automatizado propuesto en el algoritmo que se aplica por criterios de desempeño y calidad en una interfaz paga de OpenAI, permite:
+
+1.	Entrenar modelos supervisados (SVM, regresión logística, etc.) para clasificaciones preliminares.
+2.	Generar embeddings semánticos avanzados para comparaciones más detalladas y asignaciones precisas.
+3.	Exportar los resultados en archivos CSV, facilitando el análisis posterior por parte del equipo de evaluación y podría ser utilizado por el equipo gestor del programa de Salud del Ministerio.
+Esta versión del código que incluye el modelo empleado para efectos de la evaluación de impacto del FIS, permite asignar categorías a los proyectos, y en cierto modo proporciona una base para asociar si las investigaciones financiadas abordan los desafíos prioritarios de la política pública en salud, trazada en los seis ejes PIIOM propuestos.
+
+## Aporte o valor agregado para la evaluación de impacto del FIS
+
+Considerando las limitaciones en el acceso y uso de la información disponible en las diferentes plataformas MinCiencias, esta propuesta automatizada podría ofrecer un **valor agregado** en dos vías, la primera cruzar información de las convocatorias financiadas mediante convocatoria, incluidas en la evaluación de impacto del Fondo de Investigación en Salud con los lineamientos de política más o menos vigente y la segunda, brindar un prototipo de una herramienta basada en modelos de aprendizaje automática e IA, que podría ser utilizado para análisis de corpus de textos provenientes de los sistemas de proyectos o los documentos de política. En este caso de aplicación, al clasificar los proyectos según las prioridades temáticas, el código permite:
+1. Identificar tendencias clave en las investigaciones financiadas.
+2. Medir la alineación estratégica entre los proyectos y las misiones definidas por MinCiencias.
+3. Optimizar la toma de decisiones, brindando información detallada para futuras convocatorias y ajustes en la distribución de recursos.
+La capacidad de rastrear y categorizar los proyectos de forma más o menos sistemática, sin reemplazar los procesos de validación de expertos y conocedores de la CTI en el país, podría generar insumos adicionales para los procesos de gestión del programa en salud de MinCiencias.
+
+# Cómo usar el código propuesto
+
+## Requisitos iniciales
+- El código del prototipo de análisis semántico está disponible en, se debe recuperar y para su ejecución.
+- Instalar las dependencias necesarias, como `nltk`, `pandas`, `sentence-transformers`, entre otras.
+- Configurar la clave de la API de OpenAI para calcular embeddings avanzados, si se utilizan.
+
+## Preparación y ejecución
+- Proveer datos de entrada en formato CSV, asegurándose de incluir columnas clave, en este caso se usaron los titulos y las palabras clave de los proyectos, como `P_TITULO` (título) y `P_PALABRAS_CLAVES` (palabras clave).
+- Entrenar los modelos supervisados con datos etiquetados previamente, lo que implica fases de iteración, revisión y ajuste para ponerlo a punto.
+- Usar *embeddings* para una clasificación más precisa basada en similitudes semánticas, lo que implica generar un corpus con los criterios, en este caso la definición de los 6 ejes PIIOM propuestos por MinCiencias, en el documento de política.
+
+## Exportación y análisis de resultados
+- Los resultados clasificados se exportan automáticamente a un archivo CSV, facilitando su análisis y potencial uso en el proceso de evaluación del FIS.
+
+## Diagrama del flujo del proceso
+El flujo general del código se describe como:
+!Img gthb
+
+# Observaciones
+Este código representa una solución para automatizar la clasificación de proyectos financiados por el FIS, utilizando tecnologías ML e IA en procesamiento de lenguaje natural y aprendizaje automático. Al combinar métodos clásicos y modernos, se asegura una alineación precisa con las políticas por misiones definidas por MinCiencias. Esto no solo facilita el análisis estratégico de las políticas de los proyectos financiados del FIS y de los lineamientos de políticas en salud, sino que también brinda insumo para el análisis, la planificación y la evaluación de los proyectos, procurando un tratamiento sistemático de la información disponible.
+Este ejercicio debe tomarse como una aplicación piloto, en tanto que apoyo a la toma de decisiones y no como un mecanismo final de clasificación, ya que las políticas y definiciones estratégicas pueden evolucionar.
